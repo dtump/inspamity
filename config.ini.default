@@ -1,0 +1,11 @@
+[anthropic]
+api_key = your_api_key_here
+model = claude-3-5-haiku-latest
+temperature = 0.00
+timeout = 20.0
+
+[settings]
+# Enable debug mode to save copies of processed emails and AI output
+debug_mode = false
+# Directory where debug files will be stored
+debug_directory = /var/local/inspamity
