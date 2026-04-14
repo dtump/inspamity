@@ -49,10 +49,10 @@ sudo git clone https://github.com/dtump/inspamity.git /usr/local/inspamity
 
 # Set proper permissions
 sudo chmod +x /usr/local/inspamity/email_ai_interface.py
-sudo chmod +x /usr/local/inspamity/cli_check_spam.py
+sudo chmod +x /usr/local/inspamity/cli_toolbox.py
 
-# Install dependencies (adjust based on your requirements)
-sudo pip3 install -r /usr/local/inspamity/requirements.txt
+# Install dependencies
+sudo pip3 install /usr/local/inspamity
 ```
 
 ### Step 2: Install the rspamd integration
