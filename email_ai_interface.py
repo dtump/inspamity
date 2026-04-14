@@ -5,7 +5,7 @@ import traceback
 from datetime import datetime
 from pathlib import Path
 
-from email_utils.anthropic_spam_check import check_spam_with_ai
+from email_utils.ai_spam_check import check_spam_with_ai
 from email_utils.config import load_config
 from email_utils.process_email import format_email_content, get_email_content
 
