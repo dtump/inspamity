@@ -73,7 +73,7 @@ sudo systemctl restart rspamd
 
 ```bash
 # Test the CLI tool with a sample email
-/usr/local/inspamity/cli_toolbox.py /path/to/test-email.eml
+/usr/local/inspamity/.venv/bin/python3 /usr/local/inspamity/cli_toolbox.py /path/to/test-email.eml
 
 # Check rspamd logs to verify integration
 sudo tail -f /var/log/rspamd/rspamd.log
@@ -112,7 +112,7 @@ You can adjust these settings by editing `/etc/rspamd/local.d/external_ai_test.l
 ## 🐛 Troubleshooting
 
 - Check rspamd logs for errors: `sudo tail -f /var/log/rspamd/rspamd.log`
-- Test email processing directly: `/usr/local/inspamity/email_ai_interface.py email.eml`
+- Test email processing directly: `/usr/local/inspamity/.venv/bin/python3 /usr/local/inspamity/email_ai_interface.py email.eml`
 - Verify permissions on all scripts and directories
 - Ensure all dependencies are properly installed
 
