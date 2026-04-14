@@ -51,8 +51,9 @@ sudo git clone https://github.com/dtump/inspamity.git /usr/local/inspamity
 sudo chmod +x /usr/local/inspamity/email_ai_interface.py
 sudo chmod +x /usr/local/inspamity/cli_toolbox.py
 
-# Install dependencies
-sudo pip3 install /usr/local/inspamity
+# Create a virtual environment and install dependencies
+sudo python3 -m venv /usr/local/inspamity/.venv
+sudo /usr/local/inspamity/.venv/bin/pip install /usr/local/inspamity
 ```
 
 ### Step 2: Install the rspamd integration
