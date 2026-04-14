@@ -2,7 +2,7 @@ import json
 from unittest.mock import MagicMock, patch
 
 from email_utils import config as config_module
-from email_utils.anthropic_spam_check import check_spam_with_ai
+from email_utils.anthropic_spam_check import check_spam_with_anthropic
 
 
 def _mock_config(tmp_path, monkeypatch, temperature=None):
@@ -25,7 +25,7 @@ def _make_mock_response(response_json):
     return mock_response
 
 
-class TestCheckSpamWithAi:
+class TestCheckSpamWithAnthropic:
     @patch("email_utils.anthropic_spam_check.anthropic.Anthropic")
     def test_spam_detected(self, mock_anthropic_cls, tmp_path, monkeypatch):
         _mock_config(tmp_path, monkeypatch, temperature=0.0)
@@ -35,7 +35,7 @@ class TestCheckSpamWithAi:
         mock_client.messages.create.return_value = _make_mock_response(spam_response)
         mock_anthropic_cls.return_value = mock_client
 
-        result = check_spam_with_ai("Subject: Buy now!!!\n\nCheap deals!")
+        result = check_spam_with_anthropic("Subject: Buy now!!!\n\nCheap deals!")
         assert result["is_spam"] == "yes"
         assert result["confidence"] == 95
         assert result["reason"] == "Obvious spam"
@@ -49,7 +49,7 @@ class TestCheckSpamWithAi:
         mock_client.messages.create.return_value = _make_mock_response(ham_response)
         mock_anthropic_cls.return_value = mock_client
 
-        result = check_spam_with_ai("Subject: Weekly update\n\nHere's your digest.")
+        result = check_spam_with_anthropic("Subject: Weekly update\n\nHere's your digest.")
         assert result["is_spam"] == "no"
         assert result["confidence"] == 10
 
@@ -61,7 +61,7 @@ class TestCheckSpamWithAi:
         mock_client.messages.create.side_effect = Exception("API timeout")
         mock_anthropic_cls.return_value = mock_client
 
-        result = check_spam_with_ai("some email content")
+        result = check_spam_with_anthropic("some email content")
         assert result["is_spam"] == "no"
         assert result["confidence"] == 0
         assert "Error" in result["reason"]
@@ -76,7 +76,7 @@ class TestCheckSpamWithAi:
         )
         mock_anthropic_cls.return_value = mock_client
 
-        check_spam_with_ai("test")
+        check_spam_with_anthropic("test")
 
         call_kwargs = mock_client.messages.create.call_args[1]
         assert "temperature" in call_kwargs
@@ -94,7 +94,7 @@ class TestCheckSpamWithAi:
         )
         mock_anthropic_cls.return_value = mock_client
 
-        check_spam_with_ai("test")
+        check_spam_with_anthropic("test")
 
         call_kwargs = mock_client.messages.create.call_args[1]
         assert "temperature" not in call_kwargs

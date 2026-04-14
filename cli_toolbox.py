@@ -43,7 +43,7 @@ def main() -> None:
         # Check for spam using AI if requested
         if args.check_ai:
             try:
-                from email_utils.anthropic_spam_check import check_spam_with_ai
+                from email_utils.ai_spam_check import check_spam_with_ai
 
                 # Send formatted email content to AI
                 result = check_spam_with_ai(output)

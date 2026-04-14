@@ -16,6 +16,7 @@ authors = [
 dependencies = [
     "anthropic>=0.90,<1.0",
     "beautifulsoup4>=4.13",
+    "openai>=2.0,<3.0",
 ]
 
 [project.optional-dependencies]

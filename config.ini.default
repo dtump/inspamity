@@ -1,3 +1,11 @@
+[settings]
+# AI provider to use: anthropic or openai
+provider = anthropic
+# Enable debug mode to save copies of processed emails and AI output
+debug_mode = false
+# Directory where debug files will be stored
+debug_directory = /var/local/inspamity
+
 [anthropic]
 api_key = your_api_key_here
 model = claude-haiku-4-5-latest
@@ -5,8 +13,9 @@ model = claude-haiku-4-5-latest
 temperature = 0.0
 timeout = 20.0
 
-[settings]
-# Enable debug mode to save copies of processed emails and AI output
-debug_mode = false
-# Directory where debug files will be stored
-debug_directory = /var/local/inspamity
+[openai]
+api_key = your_api_key_here
+model = gpt-5.4-mini
+# Temperature for AI responses (0.0 = deterministic). Remove to use model default.
+temperature = 0.0
+timeout = 20.0
