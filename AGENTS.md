@@ -12,7 +12,8 @@ AI-powered spam detection tool that integrates with rspamd using AI providers (A
 │   ├── prompts.py                 # Shared SYSTEM_PROMPT constant
 │   ├── ai_spam_check.py           # Provider dispatcher (check_spam_with_ai)
 │   ├── anthropic_spam_check.py    # Anthropic provider implementation
-│   └── openai_spam_check.py       # OpenAI provider implementation
+│   ├── openai_spam_check.py       # OpenAI provider implementation
+│   ├── validation.py              # AI response validation/normalization
 │   └── process_email.py           # Email parsing and formatting
 ├── rspamd/
 │   └── external_ai_test.lua       # rspamd Lua plugin
