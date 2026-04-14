@@ -5,29 +5,41 @@
 import argparse
 import json
 from pathlib import Path
-from email_utils.process_email import get_email_content, format_email_content
 
-def main():
-    parser = argparse.ArgumentParser(description='Process a single email file')
-    parser.add_argument('email_file', help='Path to the email file')
-    parser.add_argument('--output', '-o', help='Output file for processed email (STDOUT for console)')
-    parser.add_argument('--output-json', '-j', action='store_true', help='If specified, output JSON instead of human-readable text')
-    parser.add_argument('--check-ai', '-a', action='store_true', 
-                        help='Use AI to check if the email is spam')
+from email_utils.process_email import format_email_content, get_email_content
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description="Process a single email file")
+    parser.add_argument("email_file", help="Path to the email file")
+    parser.add_argument(
+        "--output",
+        "-o",
+        help="Output file for processed email (STDOUT for console)",
+    )
+    parser.add_argument(
+        "--output-json",
+        "-j",
+        action="store_true",
+        help="If specified, output JSON instead of human-readable text",
+    )
+    parser.add_argument(
+        "--check-ai", "-a", action="store_true", help="Use AI to check if the email is spam"
+    )
     args = parser.parse_args()
-    
+
     email_path = Path(args.email_file)
-    
+
     try:
         # Get the processed email content
         email_content = get_email_content(email_path)
-        
+
         # Format the content into readable output
         output = format_email_content(email_content)
 
         ai_output = ""
         error = False
-        
+
         # Check for spam using AI if requested
         if args.check_ai:
             try:
@@ -44,8 +56,8 @@ def main():
                     ai_output = f"Is spam: {result.get('is_spam', 'Unknown')}\n"
                     ai_output += f"Confidence: {result.get('confidence', 'Unknown')}\n"
                     ai_output += f"Reason: {result.get('reason', 'No reason provided')}"
-                
-                if not result.get('is_spam'):
+
+                if not result.get("is_spam"):
                     error = True
             except Exception as e:
                 output += f"\n\nError performing AI spam check: {e}\n"
@@ -53,14 +65,14 @@ def main():
         # If no output and no check-ai specified, output to console
         if not args.output and not args.check_ai:
             print(output)
-        
+
         # Output to file or console
         if args.output:
             if args.output == "STDOUT":
                 print(output)
             else:
                 output_file = Path(args.output)
-                with open(output_file, 'w', encoding='utf-8') as f:
+                with open(output_file, "w", encoding="utf-8") as f:
                     f.write(output)
                 print(f"Processed: {email_path} -> {output_file}")
 
@@ -69,9 +81,10 @@ def main():
 
             if error:
                 exit(254)
-    
+
     except Exception as e:
         print(f"Error processing {email_path}: {e}")
+
 
 if __name__ == "__main__":
     main()

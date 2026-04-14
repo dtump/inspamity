@@ -1,7 +1,8 @@
 [anthropic]
 api_key = your_api_key_here
-model = claude-3-5-haiku-latest
-temperature = 0.00
+model = claude-haiku-4-5-latest
+# Temperature for AI responses (0.0 = deterministic). Remove to use model default.
+temperature = 0.0
 timeout = 20.0
 
 [settings]

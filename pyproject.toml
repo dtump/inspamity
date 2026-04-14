@@ -21,6 +21,7 @@ dependencies = [
 [project.optional-dependencies]
 dev = [
     "pytest==9.0.3",
+    "ruff>=0.11",
 ]
 
 [tool.setuptools.packages.find]
@@ -28,3 +29,10 @@ include = ["email_utils*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W", "UP"]
