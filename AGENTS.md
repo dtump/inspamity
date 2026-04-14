@@ -1,0 +1,53 @@
+# Inspamity — Agent Guidelines
+
+AI-powered spam detection tool that integrates with rspamd using the Anthropic Claude API.
+
+## Project Structure
+
+```
+├── email_ai_interface.py          # Main entry point (stdin/file → AI → JSON)
+├── cli_toolbox.py                 # CLI tool for testing emails
+├── email_utils/
+│   ├── config.py                  # Shared config loader (system/local)
+│   ├── anthropic_spam_check.py    # Anthropic API integration
+│   └── process_email.py           # Email parsing and formatting
+├── rspamd/
+│   └── external_ai_test.lua       # rspamd Lua plugin
+├── tests/                         # pytest test suite
+├── config.ini.default             # Configuration template
+└── pyproject.toml                 # Project metadata and dependencies
+```
+
+## Development Setup
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -e ".[dev]"
+```
+
+## Code Standards
+
+- **Python ≥ 3.10** — use modern syntax (`str | None`, `dict[str, Any]`)
+- **Formatting/linting**: ruff — run `ruff check .` and `ruff format .` before committing
+- **Type hints** on all public function signatures
+- **Line length**: 100 characters max
+- **Quotes**: double quotes (enforced by ruff)
+- **Imports**: sorted by ruff (`I` rule), stdlib → third-party → local
+
+## Testing
+
+- **Framework**: pytest 9.0.3
+- **Run tests**: `pytest -v`
+- **All changes must pass**: `ruff check . && ruff format --check . && pytest`
+- Tests live in `tests/` and mirror the module structure
+- Mock external APIs — never make real API calls in tests. Use `unittest.mock.patch` for the Anthropic client and `monkeypatch` for config paths
+- Use `tmp_path` for temporary files, `monkeypatch` for config isolation
+
+## Architecture Notes
+
+- **Config loading** is centralized in `email_utils/config.py`. Don't duplicate config logic elsewhere. Config is read from `/etc/inspamity/config.ini` (system) or `config.ini` in the project root (local), in that priority order.
+- **Entry points** (`email_ai_interface.py`, `cli_toolbox.py`) live at the project root because the rspamd Lua plugin references them by absolute path (`/usr/local/inspamity/`). Do not move them into a package.
+- **Production deployment** uses a venv at `/usr/local/inspamity/.venv/` — the Lua script calls that venv's Python directly.
+- The Anthropic API **temperature** parameter is only passed when explicitly set in config. Do not hardcode it.
+- `check_spam_with_ai()` must always return a dict with `is_spam`, `confidence`, and `reason` keys, even on error.
