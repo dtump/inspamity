@@ -8,6 +8,10 @@ __pycache__/
 dist/
 build/
 
+# Caches
+.pytest_cache/
+.ruff_cache/
+
 # Virtual environments
 .venv/
 venv/
