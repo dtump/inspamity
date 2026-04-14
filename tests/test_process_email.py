@@ -141,6 +141,41 @@ class TestGetEmailContent:
         result = get_email_content(DKIM_SPF_EMAIL, is_string=True)
         assert "DKIM-Signature" in result["removed_headers"]
 
+    def test_data_uris_filtered(self):
+        email_str = (
+            'From: a@b.com\nContent-Type: text/html; charset="utf-8"\n\n'
+            '<html><body><img src="data:image/png;base64,abc123"/>'
+            '<img src="https://example.com/real.png"/></body></html>'
+        )
+        result = get_email_content(email_str, is_string=True)
+        assert result["images"] == ["https://example.com/real.png"]
+
+    def test_javascript_links_filtered(self):
+        email_str = (
+            'From: a@b.com\nContent-Type: text/html; charset="utf-8"\n\n'
+            '<html><body><a href="javascript:alert(1)">Click</a>'
+            '<a href="https://example.com">Real</a></body></html>'
+        )
+        result = get_email_content(email_str, is_string=True)
+        assert result["links"] == ["https://example.com"]
+
+    def test_mailto_links_filtered(self):
+        email_str = (
+            'From: a@b.com\nContent-Type: text/html; charset="utf-8"\n\n'
+            '<html><body><a href="mailto:user@example.com">Email</a>'
+            '<a href="https://example.com">Web</a></body></html>'
+        )
+        result = get_email_content(email_str, is_string=True)
+        assert result["links"] == ["https://example.com"]
+
+    def test_url_whitespace_stripped(self):
+        email_str = (
+            'From: a@b.com\nContent-Type: text/html; charset="utf-8"\n\n'
+            '<html><body><a href="  https://example.com  ">Link</a></body></html>'
+        )
+        result = get_email_content(email_str, is_string=True)
+        assert result["links"] == ["https://example.com"]
+
 
 class TestFormatEmailContent:
     def test_basic_structure(self):

@@ -5,6 +5,7 @@ from openai import OpenAI
 
 from email_utils.config import load_config
 from email_utils.prompts import SYSTEM_PROMPT
+from email_utils.validation import validate_ai_response
 
 
 def check_spam_with_openai(email_content: str) -> dict[str, Any]:
@@ -40,7 +41,7 @@ def check_spam_with_openai(email_content: str) -> dict[str, Any]:
 
         response = client.chat.completions.create(**kwargs)
 
-        return json.loads(response.choices[0].message.content)
+        return validate_ai_response(json.loads(response.choices[0].message.content))
 
     except Exception as e:
         return {

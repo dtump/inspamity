@@ -5,6 +5,7 @@ import anthropic
 
 from email_utils.config import load_config
 from email_utils.prompts import SYSTEM_PROMPT
+from email_utils.validation import validate_ai_response
 
 
 def check_spam_with_anthropic(email_content: str) -> dict[str, Any]:
@@ -38,7 +39,7 @@ def check_spam_with_anthropic(email_content: str) -> dict[str, Any]:
 
         response = client.messages.create(**kwargs)
 
-        return json.loads(response.content[0].text)
+        return validate_ai_response(json.loads(response.content[0].text))
 
     except Exception as e:
         return {
