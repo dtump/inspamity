@@ -57,7 +57,7 @@ def main() -> None:
                     ai_output += f"Confidence: {result.get('confidence', 'Unknown')}\n"
                     ai_output += f"Reason: {result.get('reason', 'No reason provided')}"
 
-                if not result.get("is_spam"):
+                if "is_spam" not in result or "confidence" not in result:
                     error = True
             except Exception as e:
                 output += f"\n\nError performing AI spam check: {e}\n"

@@ -146,6 +146,8 @@ def get_email_content(source: str | Path, is_string: bool = False) -> dict[str, 
                 body_text += payload.decode("utf-8", errors="replace")
 
     # Prefer HTML body over plain text, converting HTML to text
+    # Parse once and reuse for text extraction and link/image collection
+    soup = None
     if html_content:
         soup = BeautifulSoup(html_content, "html.parser")
         body_text = soup.get_text()
@@ -156,16 +158,18 @@ def get_email_content(source: str | Path, is_string: bool = False) -> dict[str, 
     # Extract images and links if HTML content exists (with deduplication)
     images = []
     links = []
-    if html_content:
-        soup = BeautifulSoup(html_content, "html.parser")
+    skip_schemes = {"data", "javascript", "vbscript", "mailto"}
+    if soup is not None:
         for img in soup.find_all("img"):
-            src = img.get("src")
-            if src and src not in images:
+            src = (img.get("src") or "").strip()
+            scheme = src.split(":", 1)[0].lower() if ":" in src else ""
+            if src and scheme not in skip_schemes and src not in images:
                 images.append(src)
 
         for a in soup.find_all("a"):
-            href = a.get("href")
-            if href and href not in links:
+            href = (a.get("href") or "").strip()
+            scheme = href.split(":", 1)[0].lower() if ":" in href else ""
+            if href and scheme not in skip_schemes and href not in links:
                 links.append(href)
 
     return {

@@ -22,7 +22,7 @@ def main() -> None:
             email_file = Path(sys.argv[1])
             if not email_file.exists():
                 raise FileNotFoundError(f"Email file not found: {email_file}")
-            with open(email_file, encoding="utf-8") as f:
+            with open(email_file, encoding="utf-8", errors="replace") as f:
                 email_content = f.read()
         else:
             # Read email from STDIN if no filename provided

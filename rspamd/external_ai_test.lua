@@ -64,7 +64,7 @@ local function check_with_external_script(task)
 
         local json_result = parser:get_object()
         local is_spam = (json_result.is_spam == "yes")
-        local confidence = tonumber(json_result.confidence) or 0
+        local confidence = tonumber(json_result.confidence or 0) or 0
         local reason = json_result.reason or "No reason provided"
 
         -- Calculate score (confidence/10, range 0-10)
