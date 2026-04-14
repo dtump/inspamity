@@ -38,6 +38,11 @@ pip install -e ".[dev]"
 - **Quotes**: double quotes (enforced by ruff)
 - **Imports**: sorted by ruff (`I` rule), stdlib → third-party → local
 
+## Before Submitting a PR
+
+- Run `ruff check . && ruff format --check . && pytest` — all must pass
+- Check if `README.md` needs updates to reflect your changes (new features, changed config, updated commands)
+
 ## Testing
 
 - **Framework**: pytest 9.0.3

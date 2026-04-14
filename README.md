@@ -93,6 +93,37 @@ After this, enable debugging in the config.ini
 
 ## ⚙️ Configuration
 
+Copy `config.ini.default` to `config.ini` (or `/etc/inspamity/config.ini` for system-wide) and edit it:
+
+```ini
+[settings]
+# AI provider: anthropic or openai
+provider = anthropic
+
+[anthropic]
+api_key = your_api_key_here
+model = claude-haiku-4-5-latest
+temperature = 0.0
+timeout = 20.0
+
+[openai]
+api_key = your_api_key_here
+model = gpt-5.4-mini
+temperature = 0.0
+timeout = 20.0
+```
+
+### Supported Providers
+
+| Provider | Default Model | Config Section |
+|----------|--------------|----------------|
+| Anthropic | `claude-haiku-4-5-latest` | `[anthropic]` |
+| OpenAI | `gpt-5.4-mini` | `[openai]` |
+
+Set `provider` in `[settings]` to switch between them. Only the selected provider's API key is required.
+
+### rspamd Integration
+
 By default, the rspamd Lua script is configured to:
 - Run after all other checks (type postfilter)
 - Skip emails already marked as spam
