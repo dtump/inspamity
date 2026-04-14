@@ -16,6 +16,7 @@ local function check_with_external_script(task)
         end
     end
 
+    local python_path = "/usr/local/inspamity/.venv/bin/python3"
     local script_path = "/usr/local/inspamity/email_ai_interface.py"
     local raw_content = task:get_content() -- Full email including headers
     local content_str = tostring(raw_content)  -- Convert userdata to string
@@ -31,7 +32,7 @@ local function check_with_external_script(task)
     file:close()
 
     -- Execute the script with explicit Python 3, capturing stdout and stderr
-    local cmd = string.format("python3 %s %s 2>&1", script_path, tmp_file)
+    local cmd = string.format("%s %s %s 2>&1", python_path, script_path, tmp_file)
     local handle = io.popen(cmd, "r")
     if not handle then
         rspamd_logger.errx(task, "Failed to execute script: %s", script_path)

@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "inspamity"
+version = "0.1.0"
+description = "AI-powered spam detection tool for email filtering systems"
+readme = "README.md"
+license = "AGPL-3.0-only"
+requires-python = ">=3.10"
+authors = [
+    { name = "Dick Tump" },
+]
+
+dependencies = [
+    "anthropic>=0.90,<1.0",
+    "beautifulsoup4>=4.13",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest==9.0.3",
+]
+
+[tool.setuptools.packages.find]
+include = ["email_utils*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
