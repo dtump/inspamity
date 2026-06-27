@@ -47,13 +47,20 @@ sudo mkdir -p /usr/local/inspamity
 # Clone the repository (or copy your files)
 sudo git clone https://github.com/dtump/inspamity.git /usr/local/inspamity
 
-# Set proper permissions
-sudo chmod +x /usr/local/inspamity/email_ai_interface.py
-sudo chmod +x /usr/local/inspamity/cli_toolbox.py
+# Set executable permissions
+sudo chmod 0755 /usr/local/inspamity/email_ai_interface.py
+sudo chmod 0755 /usr/local/inspamity/cli_toolbox.py
 
 # Create a virtual environment and install dependencies
 sudo python3 -m venv /usr/local/inspamity/.venv
 sudo /usr/local/inspamity/.venv/bin/pip install /usr/local/inspamity
+
+# Create system config and private debug locations
+sudo install -d -o root -g _rspamd -m 0750 /etc/inspamity
+sudo install -d -o _rspamd -g _rspamd -m 0700 /var/local/inspamity
+sudo cp /usr/local/inspamity/config.ini.default /etc/inspamity/config.ini
+sudo chown root:_rspamd /etc/inspamity/config.ini
+sudo chmod 0640 /etc/inspamity/config.ini
 ```
 
 ### Step 2: Install the rspamd integration
@@ -65,7 +72,8 @@ sudo cp /usr/local/inspamity/rspamd/external_ai_test.lua /etc/rspamd/plugins.d/
 # Create /etc/rspamd/modules.d/external_ai_test.conf
 echo -e 'external_ai_test {\n   enabled = true;\n}' | sudo tee /etc/rspamd/modules.d/external_ai_test.conf
 
-# Restart rspamd to apply changes
+# Verify rspamd config, then restart rspamd to apply changes
+sudo rspamadm configtest
 sudo systemctl restart rspamd
 ```
 
@@ -81,24 +89,32 @@ sudo tail -f /var/log/rspamd/rspamd.log
 
 ### Step 4: Enable debugging
 
-```bash
-# Make directory for debugging data
-mkdir /var/local/inspamity
+Debug mode can save raw email, processed email, AI output, and error logs. Treat these files as private mail data.
 
-# Make _rspamd owner of this directory
-chown _rspamd: /var/local/inspamity
+```bash
+# The installation step above creates this directory; these commands are safe to re-run.
+sudo install -d -o _rspamd -g _rspamd -m 0700 /var/local/inspamity
 ```
 
-After this, enable debugging in the config.ini
+After this, set `debug_mode = true` in `/etc/inspamity/config.ini` if you really need debug artifacts. Inspamity creates new debug files with mode `0600`.
 
 ## ⚙️ Configuration
 
-Copy `config.ini.default` to `config.ini` (or `/etc/inspamity/config.ini` for system-wide) and edit it:
+Copy `config.ini.default` to `/etc/inspamity/config.ini` for system-wide production use and edit it. Keep it readable only by root and the rspamd runtime user because it contains provider API keys:
+
+```bash
+sudo chown root:_rspamd /etc/inspamity/config.ini
+sudo chmod 0640 /etc/inspamity/config.ini
+sudo -u _rspamd test -r /etc/inspamity/config.ini
+```
 
 ```ini
 [settings]
 # AI provider: anthropic or openai
 provider = anthropic
+# Save private debug artifacts under debug_directory when true
+debug_mode = false
+debug_directory = /var/local/inspamity
 
 [anthropic]
 api_key = your_api_key_here
@@ -130,7 +146,7 @@ By default, the rspamd Lua script is configured to:
 - Apply a score based on the AI's confidence level
 - Log detailed information for debugging
 
-You can adjust these settings by editing `/etc/rspamd/local.d/external_ai_test.lua` to fit your needs.
+You can adjust these settings by editing the installed plugin at `/etc/rspamd/plugins.d/external_ai_test.lua` to fit your needs.
 
 ## 📊 How It Works
 
@@ -144,7 +160,10 @@ You can adjust these settings by editing `/etc/rspamd/local.d/external_ai_test.l
 
 - Check rspamd logs for errors: `sudo tail -f /var/log/rspamd/rspamd.log`
 - Test email processing directly: `/usr/local/inspamity/.venv/bin/python3 /usr/local/inspamity/email_ai_interface.py email.eml`
-- Verify permissions on all scripts and directories
+- Verify permissions on all scripts and directories:
+  - `/etc/inspamity` should be `0750 root:_rspamd`
+  - `/etc/inspamity/config.ini` should be `0640 root:_rspamd`
+  - `/var/local/inspamity` should be `0700 _rspamd:_rspamd`
 - Ensure all dependencies are properly installed
 
 ## 📜 License

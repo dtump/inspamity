@@ -1,9 +1,14 @@
+# Production config is normally /etc/inspamity/config.ini.
+# Recommended permissions: /etc/inspamity 0750 root:_rspamd, config.ini 0640 root:_rspamd.
+
 [settings]
 # AI provider to use: anthropic or openai
 provider = anthropic
 # Enable debug mode to save copies of processed emails and AI output
 debug_mode = false
-# Directory where debug files will be stored
+# Directory where debug files will be stored.
+# Treat this as private mail data; recommended permissions: 0700 _rspamd:_rspamd.
+# New debug files are created with mode 0600.
 debug_directory = /var/local/inspamity
 
 [anthropic]
