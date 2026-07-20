@@ -20,7 +20,7 @@ timeout = 20.0
 
 [openai]
 api_key = your_api_key_here
-model = gpt-5.4-mini
+model = gpt-5.6-luna
 # Temperature for AI responses (0.0 = deterministic). Remove to use model default.
 temperature = 0.0
 timeout = 20.0

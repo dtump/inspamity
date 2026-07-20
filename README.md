@@ -124,7 +124,7 @@ timeout = 20.0
 
 [openai]
 api_key = your_api_key_here
-model = gpt-5.4-mini
+model = gpt-5.6-luna
 temperature = 0.0
 timeout = 20.0
 ```
@@ -134,7 +134,7 @@ timeout = 20.0
 | Provider | Default Model | Config Section |
 |----------|--------------|----------------|
 | Anthropic | `claude-haiku-4-5-latest` | `[anthropic]` |
-| OpenAI | `gpt-5.4-mini` | `[openai]` |
+| OpenAI | `gpt-5.6-luna` | `[openai]` |
 
 Set `provider` in `[settings]` to switch between them. Only the selected provider's API key is required.
 
