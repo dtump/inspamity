@@ -5,9 +5,12 @@ from email_utils import config as config_module
 from email_utils.openai_spam_check import check_spam_with_openai
 
 
-def _mock_config(tmp_path, monkeypatch, temperature=None):
+def _mock_config(tmp_path, monkeypatch, temperature=None, model="gpt-5.6-luna"):
     """Helper to set up a mock config file."""
-    lines = "[openai]\napi_key = test-key\nmodel = gpt-5.4-mini\ntimeout = 10.0\n"
+    lines = "[openai]\napi_key = test-key\n"
+    if model is not None:
+        lines += f"model = {model}\n"
+    lines += "timeout = 10.0\n"
     if temperature is not None:
         lines += f"temperature = {temperature}\n"
     config_file = tmp_path / "config.ini"
@@ -28,6 +31,21 @@ def _make_mock_response(response_json):
 
 
 class TestCheckSpamWithOpenai:
+    @patch("email_utils.openai_spam_check.OpenAI")
+    def test_uses_luna_by_default(self, mock_openai_cls, tmp_path, monkeypatch):
+        _mock_config(tmp_path, monkeypatch, model=None)
+
+        mock_client = MagicMock()
+        mock_client.chat.completions.create.return_value = _make_mock_response(
+            {"is_spam": "no", "confidence": 0, "reason": "test"}
+        )
+        mock_openai_cls.return_value = mock_client
+
+        check_spam_with_openai("test")
+
+        call_kwargs = mock_client.chat.completions.create.call_args[1]
+        assert call_kwargs["model"] == "gpt-5.6-luna"
+
     @patch("email_utils.openai_spam_check.OpenAI")
     def test_spam_detected(self, mock_openai_cls, tmp_path, monkeypatch):
         _mock_config(tmp_path, monkeypatch, temperature=0.0)

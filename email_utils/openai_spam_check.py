@@ -21,7 +21,7 @@ def check_spam_with_openai(email_content: str) -> dict[str, Any]:
         config = load_config()
 
         api_key = config.get("openai", "api_key")
-        model = config.get("openai", "model", fallback="gpt-5.4-mini")
+        model = config.get("openai", "model", fallback="gpt-5.6-luna")
         timeout = config.getfloat("openai", "timeout", fallback=20.0)
 
         client = OpenAI(api_key=api_key, timeout=timeout)
