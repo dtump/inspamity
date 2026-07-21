@@ -9,6 +9,7 @@ def _mock_config(tmp_path, monkeypatch, provider="anthropic"):
     lines = f"[settings]\nprovider = {provider}\n"
     lines += "[anthropic]\napi_key = test\n"
     lines += "[openai]\napi_key = test\n"
+    lines += "[mistral]\napi_key = test\n"
     config_file = tmp_path / "config.ini"
     config_file.write_text(lines)
     monkeypatch.setattr(config_module, "SYSTEM_CONFIG_PATH", tmp_path / "nonexistent.ini")
@@ -32,6 +33,15 @@ class TestAiSpamCheckDispatcher:
 
         result = check_spam_with_ai("test email")
         mock_openai.assert_called_once_with("test email")
+        assert result["is_spam"] == "yes"
+
+    @patch("email_utils.mistral_spam_check.check_spam_with_mistral")
+    def test_dispatches_to_mistral(self, mock_mistral, tmp_path, monkeypatch):
+        _mock_config(tmp_path, monkeypatch, provider="mistral")
+        mock_mistral.return_value = {"is_spam": "yes", "confidence": 85, "reason": "spam"}
+
+        result = check_spam_with_ai("test email")
+        mock_mistral.assert_called_once_with("test email")
         assert result["is_spam"] == "yes"
 
     def test_unknown_provider_returns_error(self, tmp_path, monkeypatch):

@@ -29,7 +29,7 @@ CORPUS_DIR = Path(__file__).parent / "fixtures" / "spam"
 ALL_FIXTURES = sorted(CORPUS_DIR.glob("*.eml"))
 
 try:
-    FIXTURE_COUNT = int(os.environ.get("INSPAMITY_LIVE_LLM_FIXTURE_COUNT", "1"))
+    FIXTURE_COUNT = int(os.environ.get("INSPAMITY_LIVE_LLM_FIXTURE_COUNT", "5"))
 except ValueError as error:
     raise pytest.UsageError(
         "INSPAMITY_LIVE_LLM_FIXTURE_COUNT must be a positive integer."

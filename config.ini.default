@@ -2,7 +2,7 @@
 # Recommended permissions: /etc/inspamity 0750 root:_rspamd, config.ini 0640 root:_rspamd.
 
 [settings]
-# AI provider to use: anthropic or openai
+# AI provider to use: anthropic, openai, or mistral
 provider = anthropic
 # Enable debug mode to save copies of processed emails and AI output
 debug_mode = false
@@ -23,4 +23,15 @@ api_key = your_api_key_here
 model = gpt-5.6-luna
 # GPT-5-class models do not support temperature; leave it unset for those models.
 # temperature = 0.0
+timeout = 20.0
+
+[mistral]
+api_key = your_api_key_here
+model = mistral-large-2512
+# Inference endpoint: global or eu. The us endpoint is configurable but not available yet.
+endpoint = global
+# Maximum response length. 256 leaves room for the JSON reason without encouraging longer output.
+max_tokens = 256
+# Temperature for AI responses (0.0 = deterministic). Remove to use model default.
+temperature = 0.0
 timeout = 20.0

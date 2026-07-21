@@ -21,6 +21,10 @@ def check_spam_with_ai(email_content: str) -> dict[str, Any]:
             from email_utils.openai_spam_check import check_spam_with_openai
 
             return check_spam_with_openai(email_content)
+        elif provider == "mistral":
+            from email_utils.mistral_spam_check import check_spam_with_mistral
+
+            return check_spam_with_mistral(email_content)
         else:
             return {
                 "is_spam": "no",
