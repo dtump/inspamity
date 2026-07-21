@@ -125,7 +125,8 @@ timeout = 20.0
 [openai]
 api_key = your_api_key_here
 model = gpt-5.6-luna
-temperature = 0.0
+# GPT-5-class models do not support temperature; leave it unset for those models.
+# temperature = 0.0
 timeout = 20.0
 ```
 
@@ -155,6 +156,53 @@ You can adjust these settings by editing the installed plugin at `/etc/rspamd/pl
 3. The Python script analyzes the email using AI techniques and returns a JSON response
 4. Based on the response, rspamd adjusts the spam score accordingly
 5. Detailed logging provides insights into the decision-making process
+
+## 🧪 Testing and spam corpus
+
+The regular test suite includes an anonymised, reviewed corpus of 20 distinct
+spam campaigns in `tests/fixtures/spam/`. It exercises email parsing and
+formatting without calling an LLM, and verifies that recipient and mail-server
+identifiers are not present in the committed fixtures:
+
+```bash
+.venv/bin/pytest -v
+```
+
+For an opt-in local OpenAI benchmark, create the ignored `config.ini` in the
+project root with only these required settings:
+
+```ini
+[settings]
+provider = openai
+
+[openai]
+api_key = your_api_key_here
+model = your_model_id
+```
+
+`timeout` and `temperature` are optional; the benchmark needs neither. The
+project's `config.ini` is ignored by Git, and `/etc/inspamity/config.ini`, when
+present, takes precedence over it.
+
+Run one fixture by default:
+
+```bash
+INSPAMITY_RUN_LIVE_LLM=1 .venv/bin/pytest -m live_llm -v --durations=1 --log-cli-level=INFO
+```
+
+`--durations=1` only reports the single slowest test; it does not control the
+number of API calls. `--log-cli-level=INFO` displays one line per LLM response
+with its spam classification, confidence, reason, and duration. The default
+benchmark makes one API call. For a more representative run, increase the
+number of corpus fixtures (up to 20), for example:
+
+```bash
+INSPAMITY_RUN_LIVE_LLM=1 INSPAMITY_LIVE_LLM_FIXTURE_COUNT=20 \
+  .venv/bin/pytest -m live_llm -v --durations=20 --log-cli-level=INFO
+```
+
+The live tests expect every reviewed fixture to be classified as spam. They are
+skipped unless `INSPAMITY_RUN_LIVE_LLM=1` is set, so they never run in CI.
 
 ## 🐛 Troubleshooting
 

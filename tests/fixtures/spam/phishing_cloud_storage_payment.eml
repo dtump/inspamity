@@ -1,0 +1,293 @@
+From: Account Alerts Team <support@bahai.us>
+To: recipient@example.invalid
+Subject:
+ Your storage access is paused. Resolve the May payment issue immediately.
+Message-ID: <1a5ab1efab48436296b085fbba7efac6@bahai.us>
+Date: Wed, 08 Jul 2026 14:25:50 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=3D"utf-8">
+    <meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=3D=
+1.0">
+    <title>Notice: Payment Unsuccessful</title>
+    <style>
+        /* Clean, professional sans-serif system font */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Robot=
+o, Helvetica, Arial, sans-serif;
+            background-color: #f3f4f6; /* Very light cool grey */
+            margin: 0;
+            padding: 40px 20px;
+            color: #111827;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .email-wrapper {
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        /* Minimalist Header */
+        .header {
+            text-align: center;
+            margin-bottom: 24px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        /* The "Receipt" Card */
+        .receipt-card {
+            background-color: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* High-Urgency Top Banner */
+        .warning-banner {
+            background-color: #dc2626; /* Strong Warning Red */
+            color: #ffffff;
+            text-align: center;
+            padding: 12px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* Top Section: The Alert */
+        .receipt-top {
+            padding: 30px 40px 30px 40px;
+            text-align: center;
+        }
+
+        .alert-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+            line-height: 1;
+        }
+
+        h1 {
+            font-size: 22px;
+            font-weight: 700;
+            margin: 0 0 12px 0;
+            color: #111827;
+        }
+
+        p {
+            font-size: 15px;
+            line-height: 1.5;
+            color: #4b5563;
+            margin: 0;
+        }
+
+        /* The Perforated Divider Line */
+        .divider-container {
+            position: relative;
+            height: 2px;
+            background-color: #ffffff;
+        }
+
+        .divider-line {
+            position: absolute;
+            top: 0;
+            left: 20px;
+            right: 20px;
+            height: 2px;
+            border-top: 2px dashed #e5e7eb;
+        }
+
+        /* CSS trick to create ticket cutouts on the sides */
+        .divider-container::before,
+        .divider-container::after {
+            content: '';
+            position: absolute;
+            top: -12px;
+            width: 24px;
+            height: 24px;
+            background-color: #f3f4f6; /* Matches body background */
+            border-radius: 50%;
+            z-index: 10;
+        }
+
+        .divider-container::before {
+            left: -12px;
+            box-shadow: inset -3px 0 5px rgba(0,0,0,0.02);
+        }
+
+        .divider-container::after {
+            right: -12px;
+            box-shadow: inset 3px 0 5px rgba(0,0,0,0.02);
+        }
+
+        /* Bottom Section: Details & CTA */
+        .receipt-bottom {
+            padding: 30px 40px 40px 40px;
+            background-color: #fafafa;
+        }
+
+        /* Invoice Data Table */
+        .invoice-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+
+        .invoice-table td {
+            padding: 12px 0;
+            font-size: 15px;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .invoice-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .td-label {
+            color: #6b7280;
+            font-weight: 500;
+        }
+
+        .td-value {
+            color: #111827;
+            text-align: right;
+            font-weight: 600;
+        }
+
+        .status-badge {
+            display: inline-block;
+            background-color: #fee2e2;
+            color: #dc2626;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Highly Visible CTA Button */
+        .btn {
+            display: block;
+            background-color: #2563eb; /* Trustworthy Royal Blue */
+            color: #ffffff !important;
+            text-decoration: none !important;
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
+            transition: background-color 0.2s, transform 0.2s;
+        }
+
+        .btn:hover {
+            background-color: #1d4ed8;
+            transform: translateY(-1px);
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 12px;
+            color: #9ca3af;
+            line-height: 1.6;
+        }
+
+        .footer a {
+            color: #6b7280;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class=3D"email-wrapper">
+       =20
+        <div class=3D"header">
+            =E2=98=81=EF=B8=8F Cloud Services
+        </div>
+
+        <div class=3D"receipt-card">
+           =20
+            <!-- Red Warning Banner -->
+            <div class=3D"warning-banner">
+                Action Required: Payment Overdue For May
+            </div>
+
+            <!-- Top Alert Section -->
+            <div class=3D"receipt-top">
+                <div class=3D"alert-icon">=F0=9F=92=B3</div>
+                <h1>Payment Declined</h1>
+                <p>We were unable to process your recent charge for <strong>M=
+ay</strong>. Your storage plan has been paused until the balance is resolved.=
+</p>
+            </div>
+
+            <!-- CSS Perforated Line -->
+            <div class=3D"divider-container">
+                <div class=3D"divider-line"></div>
+            </div>
+
+            <!-- Bottom Invoice Section -->
+            <div class=3D"receipt-bottom">
+                <table class=3D"invoice-table">
+                    <tr>
+                        <td class=3D"td-label">Billing Period</td>
+                        <td class=3D"td-value">May 2026</td>
+                    </tr>
+                    <tr>
+                        <td class=3D"td-label">Service</td>
+                        <td class=3D"td-value">250 GB Plan</td>
+                    </tr>
+                    <tr>
+                        <td class=3D"td-label">Amount Due</td>
+                        <td class=3D"td-value">$2.99</td>
+                    </tr>
+                    <tr>
+                        <td class=3D"td-label">Status</td>
+                        <td class=3D"td-value"><span class=3D"status-badge">P=
+ast Due</span></td>
+                    </tr>
+                </table>
+
+                <!-- Action-Oriented Specific CTA -->
+                <a href=3D"https://mnrforgo.vercel.app" class=3D"btn">Reactiv=
+ate Now</a>
+
+                <p style=3D"font-size: 13px; color: #6b7280; text-align: cent=
+er; margin-top: 20px; line-height: 1.4;">
+                    Please update your payment method. If left unpaid, your a=
+ccount may be subject to automated file cleanup.
+                </p>
+            </div>
+
+        </div>
+
+        <div class=3D"footer">
+            <p>
+                This notification was sent regarding your active billing agre=
+ement.<br>
+                Cloud Services Inc. | 1234 Data Drive, Server City, CA.
+            </p>
+            <p>
+                <a href=3D"https://www.primcirctoolgen.com/o-vskv-w28-3886710=
+4afda13aea52f851415ef9cad">Unsubscribe</a>
+            </p>
+        </div>
+    </div>
+
+</body>
+</html>

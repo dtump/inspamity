@@ -30,6 +30,9 @@ include = ["email_utils*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+markers = [
+    "live_llm: tests that call a configured external LLM provider (opt-in only)",
+]
 
 [tool.ruff]
 target-version = "py310"
