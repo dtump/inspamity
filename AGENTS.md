@@ -60,7 +60,7 @@ pip install -e ".[dev]"
   decoded headers and text/HTML MIME parts. Keep the corpus privacy tests passing.
 - `tests/test_spam_corpus_live.py` is an opt-in LLM benchmark. It is skipped unless
   `INSPAMITY_RUN_LIVE_LLM=1`; it must never make provider calls in ordinary tests or CI. A developer
-  with a private configured API key can run one fixture with
+  with a private configured API key can run five fixtures with
   `INSPAMITY_RUN_LIVE_LLM=1 .venv/bin/pytest -m live_llm -v --durations=1 --log-cli-level=INFO`.
   This logs each LLM result (classification, confidence, reason, and duration). Increase
   `INSPAMITY_LIVE_LLM_FIXTURE_COUNT` (up to 20) for a more representative run. The local

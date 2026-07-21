@@ -110,7 +110,7 @@ sudo -u _rspamd test -r /etc/inspamity/config.ini
 
 ```ini
 [settings]
-# AI provider: anthropic or openai
+# AI provider: anthropic, openai, or mistral
 provider = anthropic
 # Save private debug artifacts under debug_directory when true
 debug_mode = false
@@ -128,6 +128,15 @@ model = gpt-5.6-luna
 # GPT-5-class models do not support temperature; leave it unset for those models.
 # temperature = 0.0
 timeout = 20.0
+
+[mistral]
+api_key = your_api_key_here
+model = mistral-large-2512
+# Inference endpoint: global or eu. The us endpoint is configurable but not available yet.
+endpoint = global
+max_tokens = 256
+temperature = 0.0
+timeout = 20.0
 ```
 
 ### Supported Providers
@@ -136,8 +145,15 @@ timeout = 20.0
 |----------|--------------|----------------|
 | Anthropic | `claude-haiku-4-5-latest` | `[anthropic]` |
 | OpenAI | `gpt-5.6-luna` | `[openai]` |
+| Mistral | `mistral-large-2512` (Mistral Large 3) | `[mistral]` |
 
 Set `provider` in `[settings]` to switch between them. Only the selected provider's API key is required.
+
+For Mistral, `endpoint` defaults to `global`. Set it to `eu` to keep inference processing in
+EU/EFTA data centers. The `us` endpoint can also be configured, but Mistral currently lists it as
+coming soon. Regional endpoints may offer a different subset of models than the global endpoint.
+`max_tokens` defaults to `256`; this allows enough room for a complete JSON response while remaining
+a generation limit rather than a request to produce that many tokens.
 
 ### rspamd Integration
 
@@ -168,7 +184,7 @@ identifiers are not present in the committed fixtures:
 .venv/bin/pytest -v
 ```
 
-For an opt-in local OpenAI benchmark, create the ignored `config.ini` in the
+For an opt-in local provider benchmark, create the ignored `config.ini` in the
 project root with only these required settings:
 
 ```ini
@@ -180,11 +196,14 @@ api_key = your_api_key_here
 model = your_model_id
 ```
 
-`timeout` and `temperature` are optional; the benchmark needs neither. The
+Replace `openai` and `[openai]` with `anthropic`, `[anthropic]`, or `mistral`,
+`[mistral]` to benchmark another supported provider.
+
+`timeout`, `temperature`, and `max_tokens` are optional; the benchmark needs none of them. The
 project's `config.ini` is ignored by Git, and `/etc/inspamity/config.ini`, when
 present, takes precedence over it.
 
-Run one fixture by default:
+Run five fixtures by default:
 
 ```bash
 INSPAMITY_RUN_LIVE_LLM=1 .venv/bin/pytest -m live_llm -v --durations=1 --log-cli-level=INFO
@@ -193,13 +212,16 @@ INSPAMITY_RUN_LIVE_LLM=1 .venv/bin/pytest -m live_llm -v --durations=1 --log-cli
 `--durations=1` only reports the single slowest test; it does not control the
 number of API calls. `--log-cli-level=INFO` displays one line per LLM response
 with its spam classification, confidence, reason, and duration. The default
-benchmark makes one API call. For a more representative run, increase the
+benchmark makes five API calls. For a more representative run, increase the
 number of corpus fixtures (up to 20), for example:
 
 ```bash
 INSPAMITY_RUN_LIVE_LLM=1 INSPAMITY_LIVE_LLM_FIXTURE_COUNT=20 \
   .venv/bin/pytest -m live_llm -v --durations=20 --log-cli-level=INFO
 ```
+
+If Mistral returns malformed or truncated JSON, the logged error includes its finish reason and a
+bounded preview of the raw model response to make the failure diagnosable.
 
 The live tests expect every reviewed fixture to be classified as spam. They are
 skipped unless `INSPAMITY_RUN_LIVE_LLM=1` is set, so they never run in CI.
