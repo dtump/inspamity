@@ -15,6 +15,3 @@ build/
 # Virtual environments
 .venv/
 venv/
-
-# Local raw mail (never commit)
-/spam/
