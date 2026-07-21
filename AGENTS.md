@@ -47,11 +47,24 @@ pip install -e ".[dev]"
 ## Testing
 
 - **Framework**: pytest 9.0.3
-- **Run tests**: `pytest -v`
-- **All changes must pass**: `ruff check . && ruff format --check . && pytest`
+- **Run tests**: `.venv/bin/pytest -v` (or activate `.venv` first)
+- **All changes must pass**: `.venv/bin/ruff check . && .venv/bin/ruff format --check . && .venv/bin/pytest`
 - Tests live in `tests/` and mirror the module structure
 - Mock external APIs — never make real API calls in tests. Use `unittest.mock.patch` for API clients and `monkeypatch` for config paths
 - Use `tmp_path` for temporary files, `monkeypatch` for config isolation
+- `tests/fixtures/spam/` contains a reviewed corpus of 20 anonymised, distinct spam campaigns.
+  Use it for parser/formatting regression tests, and extend it only with clearly spam, non-duplicate
+  messages.
+- Fixture privacy is mandatory: remove delivery/authentication/`X-` headers and attachments, and
+  redact all recipient, organisation, domain, mail-server, and other identifying information from
+  decoded headers and text/HTML MIME parts. Keep the corpus privacy tests passing.
+- `tests/test_spam_corpus_live.py` is an opt-in LLM benchmark. It is skipped unless
+  `INSPAMITY_RUN_LIVE_LLM=1`; it must never make provider calls in ordinary tests or CI. A developer
+  with a private configured API key can run one fixture with
+  `INSPAMITY_RUN_LIVE_LLM=1 .venv/bin/pytest -m live_llm -v --durations=1 --log-cli-level=INFO`.
+  This logs each LLM result (classification, confidence, reason, and duration). Increase
+  `INSPAMITY_LIVE_LLM_FIXTURE_COUNT` (up to 20) for a more representative run. The local
+  `config.ini` needs only `settings.provider`, and the selected provider's `api_key` and `model`.
 
 ## Architecture Notes
 

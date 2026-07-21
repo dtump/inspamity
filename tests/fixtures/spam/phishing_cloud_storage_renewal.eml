@@ -1,0 +1,154 @@
+From: Cloud Operations <support@onlinepolo.hu>
+To: recipient@example.invalid
+Subject:
+ Your payment method has expired. Update now to avoid service disruption.
+Message-ID: <94cf6c5212b047148e903f38fb91c680@onlinepolo.hu>
+Date: Tue, 21 Jul 2026 00:49:03 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+=EF=BB=BF<!doctype html>
+<html lang=3D"en">
+  <head>
+    <meta charset=3D"utf-8">
+    <title>Payment Failure for Cloud Storage Renewal</title>
+    <meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=3D=
+1">
+    <style>
+      body,table,td,a { -webkit-text-size-adjust:100%; -ms-text-size-adjust:1=
+00%; }
+      table,td { mso-table-lspace:0pt; mso-table-rspace:0pt; }
+      img { -ms-interpolation-mode:bicubic; border:0; outline:none; text-deco=
+ration:none; }
+      body { margin:0; padding:0; width:100% !important; height:100% !importa=
+nt; background:#f6f7f9; font-family:Arial,Helvetica,sans-serif; }
+
+      .wrapper { width:100%; padding:30px 0; }
+      .container { max-width:500px; width:100%; margin:0 auto; background:#ff=
+ffff; border-radius:6px; box-shadow:0 1px 3px rgba(0,0,0,.08); }
+
+      .logo { display:block; margin:0 auto; padding:24px 0 12px; max-width:10=
+0px; height:auto; }
+
+      .headline { font-size:18px; font-weight:bold; color:#b91c1c; margin:0 0=
+ 10px; text-align:center; }
+      .alert { background:#fee2e2; border:1px solid #fecaca; padding:14px; bo=
+rder-radius:4px; font-size:14px; color:#111827; line-height:20px; margin-bott=
+om:18px; }
+
+      .copy { font-size:14px; color:#111827; line-height:22px; margin:0 0 10p=
+x; }
+
+      .details { font-size:14px; color:#111827; line-height:22px; margin-bott=
+om:18px; }
+      .details strong { font-weight:600; }
+
+      .btn { background:#2563eb; color:#ffffff !important; text-decoration:no=
+ne; display:inline-block; padding:14px 22px; border-radius:6px; font-size:14p=
+x; font-weight:bold; }
+      .center { text-align:center; }
+
+      .footer { font-size:12px; color:#6b7280; line-height:18px; text-align:c=
+enter; padding:18px; }
+      .footer a { color:#6b7280; text-decoration:underline; }
+    </style>
+  </head>
+  <body>
+    <table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" border=
+=3D"0" class=3D"wrapper" width=3D"100%">
+      <tr>
+        <td align=3D"center">
+          <table role=3D"presentation" cellpadding=3D"0" cellspacing=3D"0" bo=
+rder=3D"0" class=3D"container">
+            <tr>
+              <td align=3D"center">
+                <img src=3D"https://www.ni03hfph.com/686/offers/16448/thumb/l=
+ogo.png" alt=3D"Cloud Logo" class=3D"logo">
+              </td>
+            </tr>
+
+            <tr>
+              <td style=3D"padding:0 24px 10px;">
+                <p class=3D"headline">Payment Failure for Cloud Storage Renew=
+al</p>
+              </td>
+            </tr>
+
+            <tr>
+              <td style=3D"padding:0 24px;">
+                <div class=3D"alert">
+                  <strong>Your Payment Method Has Expired</strong><br>
+                  We're unable to renew your Cloud Storage. Please update you=
+r payment information to avoid disruption to your service.<br><br>
+                  If your storage is full, you can upgrade your plan to ensur=
+e you have enough space for your files and backups.
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <td style=3D"padding:0 24px;">
+                <div class=3D"details">
+                  <p><strong>Account Details:</strong></p>
+                  <p><strong>Subscription ID:</strong> <span id=3D"sub_id"></=
+span><br>
+                  <strong>Product:</strong> Cloud Storage Space<br>
+                  <strong>Expiration Date:</strong> <span id=3D"exp_date"></s=
+pan></p>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <td style=3D"padding:0 24px;">
+                <p class=3D"copy">
+                  Without enough storage space, you may lose access to store =
+and sync your data across devices. Cloud provides secure storage for your pho=
+tos, videos, documents, and more =E2=80=94 all accessible from any device.
+                </p>
+              </td>
+            </tr>
+
+            <tr>
+              <td class=3D"center" style=3D"padding:20px 24px 30px;">
+                <a href=3D"https://storage.googleapis.com/mnrtwin/lis" target=
+=3D"_blank" class=3D"btn">Update Payment Information</a>
+              </td>
+            </tr>
+
+            <tr>
+              <td style=3D"padding:0 24px 24px;">
+                <p class=3D"copy center">Thank you for using Cloud Storage se=
+rvice!<br><br>Best regards,<br>Cloud Customer Support</p>
+              </td>
+            </tr>
+          </table>
+
+          <!-- Footer -->
+          <div class=3D"footer">
+            To stop messages regarding this offer, <a href=3D"https://storage=
+.googleapis.com/allcldunsb/lis" target=3D"_blank">unsubscribe here</a>.
+          </div>
+        </td>
+      </tr>
+    </table>
+
+    <!-- Script: will display "October 2, 2025" -->
+    <script>
+      // Generate subscription ID
+      const subId =3D "IC-" + Math.floor(1000000000 + Math.random() * 9000000=
+000);
+
+      // Format today's date as "October 2, 2025"
+      const today =3D new Date();
+      const options =3D { year: 'numeric', month: 'long', day: 'numeric' };
+      const expDate =3D today.toLocaleDateString('en-US', options);
+
+      // Insert values
+      document.getElementById("sub_id").textContent =3D subId;
+      document.getElementById("exp_date").textContent =3D expDate;
+    </script>
+  </body>
+</html>
+
