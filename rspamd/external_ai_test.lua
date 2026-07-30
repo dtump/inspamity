@@ -1,6 +1,12 @@
 local rspamd_logger = require "rspamd_logger"
 local ucl = require "ucl"
 
+local options = rspamd_config:get_all_opt("external_ai_test") or {}
+local high_spam_confidence = math.min(
+    math.max(tonumber(options.high_spam_confidence) or 95, 0),
+    100
+)
+
 local function check_with_external_script(task)
     local result = task:get_metric_result()
 
@@ -82,18 +88,48 @@ local function check_with_external_script(task)
             reason
         )
 
-        -- Insert result as a single symbol
+        -- Preserve the existing dynamic score and reason.
         task:insert_result("EXTERNAL_AI_TEST", score, reason)
+
+        -- Emit zero-score verdict symbols so local rspamd policy can
+        -- distinguish spam from ham without treating EXTERNAL_AI_TEST
+        -- presence as a spam signal.
+        local confidence_option = string.format("confidence=%s", confidence)
+        if is_spam then
+            task:insert_result("EXTERNAL_AI_SPAM", 1.0, confidence_option)
+            if confidence >= high_spam_confidence then
+                task:insert_result("EXTERNAL_AI_SPAM_HIGH", 1.0, confidence_option)
+            end
+        else
+            task:insert_result("EXTERNAL_AI_HAM", 1.0, confidence_option)
+        end
     else
         rspamd_logger.errx(task, "Script returned no output")
     end
 end
 
--- Register a single symbol
-rspamd_config:register_symbol({
+-- Register the scoring symbol as a postfilter.
+local external_ai_id = rspamd_config:register_symbol({
     name = "EXTERNAL_AI_TEST",
     callback = check_with_external_script,
     type = "postfilter", -- This ensures it runs after other filters
     priority = 1,
     score = 1.0   -- Set a non-zero base score to enable dynamic scoring
 })
+
+-- These child symbols are informational. Their configured score is zero;
+-- the weight supplied to insert_result does not change the message score.
+for _, symbol in ipairs({
+    "EXTERNAL_AI_SPAM",
+    "EXTERNAL_AI_SPAM_HIGH",
+    "EXTERNAL_AI_HAM",
+}) do
+    rspamd_config:register_symbol({
+        name = symbol,
+        parent = external_ai_id,
+        type = "virtual",
+        score = 0.0,
+        flags = "empty",
+        group = "external_ai",
+    })
+end

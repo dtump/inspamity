@@ -69,8 +69,8 @@ sudo chmod 0640 /etc/inspamity/config.ini
 # Copy the Lua script to rspamd's configuration directory
 sudo cp /usr/local/inspamity/rspamd/external_ai_test.lua /etc/rspamd/plugins.d/
 
-# Create /etc/rspamd/modules.d/external_ai_test.conf
-echo -e 'external_ai_test {\n   enabled = true;\n}' | sudo tee /etc/rspamd/modules.d/external_ai_test.conf
+# Copy the module configuration
+sudo cp /usr/local/inspamity/rspamd/external_ai_test.conf /etc/rspamd/modules.d/
 
 # Verify rspamd config, then restart rspamd to apply changes
 sudo rspamadm configtest
@@ -161,9 +161,25 @@ By default, the rspamd Lua script is configured to:
 - Run after all other checks (type postfilter)
 - Skip emails already marked as spam
 - Apply a score based on the AI's confidence level
+- Emit zero-score verdict symbols for local policy and composite rules
 - Log detailed information for debugging
 
-You can adjust these settings by editing the installed plugin at `/etc/rspamd/plugins.d/external_ai_test.lua` to fit your needs.
+The plugin preserves `EXTERNAL_AI_TEST` as its scoring symbol and adds these
+informational symbols:
+
+- `EXTERNAL_AI_SPAM` for every spam verdict;
+- `EXTERNAL_AI_SPAM_HIGH` when a spam verdict meets `high_spam_confidence`;
+- `EXTERNAL_AI_HAM` for every ham verdict.
+
+All three verdict symbols have score zero and cannot change the message action
+by themselves. Their `confidence=<number>` option can be inspected in rspamd
+logs and scan output. They allow site-specific composites to require an AI
+verdict together with independent rspamd evidence instead of making the AI the
+sole decision maker.
+
+`high_spam_confidence` defaults to `95` when omitted. Values are clamped to the
+AI response range of 0 through 100. Adjust it in
+`/etc/rspamd/modules.d/external_ai_test.conf`; no plugin source edit is needed.
 
 ## 📊 How It Works
 
@@ -171,7 +187,8 @@ You can adjust these settings by editing the installed plugin at `/etc/rspamd/pl
 2. The Lua script executes `email_ai_interface.py` and passes the raw email via stdin
 3. The Python script analyzes the email using AI techniques and returns a JSON response
 4. Based on the response, rspamd adjusts the spam score accordingly
-5. Detailed logging provides insights into the decision-making process
+5. The plugin emits a zero-score spam or ham verdict symbol for local policy
+6. Detailed logging provides insights into the decision-making process
 
 ## 🧪 Testing and spam corpus
 
