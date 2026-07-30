@@ -23,7 +23,7 @@ This script acts as the bridge between your MTA or existing spam filter and AI-p
 - Evaluates the likelihood of the email being spam
 - Returns a JSON response with:
   - `is_spam`: "yes" or "no" classification
-  - `confidence`: A score from 0-100 indicating certainty
+  - `confidence`: Estimated spam probability from 0-100 (not confidence in the yes/no label)
   - `reason`: Human-readable explanation for the classification
 
 ### cli_toolbox.py
