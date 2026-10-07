@@ -55,15 +55,19 @@ pip install -e ".[dev]"
 - `tests/fixtures/spam/` contains a reviewed corpus of 20 anonymised, distinct spam campaigns.
   Use it for parser/formatting regression tests, and extend it only with clearly spam, non-duplicate
   messages.
+- `tests/fixtures/ham/` contains a reviewed corpus of 10 anonymised legitimate messages
+  (casino/sportsbook newsletters, newspaper, webshop, garage, magazine, food delivery).
+  Use it for false-positive benchmarking. Ham fixtures include synthetic `Authentication-Results`
+  headers (spf=pass, dkim=pass) to simulate production MTA output.
 - Fixture privacy is mandatory: remove delivery/authentication/`X-` headers and attachments, and
   redact all recipient, organisation, domain, mail-server, and other identifying information from
   decoded headers and text/HTML MIME parts. Keep the corpus privacy tests passing.
-- `tests/test_spam_corpus_live.py` is an opt-in LLM benchmark. It is skipped unless
-  `INSPAMITY_RUN_LIVE_LLM=1`; it must never make provider calls in ordinary tests or CI. A developer
-  with a private configured API key can run five fixtures with
-  `INSPAMITY_RUN_LIVE_LLM=1 .venv/bin/pytest -m live_llm -v --durations=1 --log-cli-level=INFO`.
+- `tests/test_spam_corpus_live.py` and `tests/test_ham_corpus_live.py` are opt-in LLM benchmarks.
+  They are skipped unless `INSPAMITY_RUN_LIVE_LLM=1`; they must never make provider calls in
+  ordinary tests or CI. A developer with a private configured API key can run them with
+  `INSPAMITY_RUN_LIVE_LLM=1 .venv/bin/pytest -m live_llm -v --log-cli-level=INFO`.
   This logs each LLM result (classification, confidence, reason, and duration). Increase
-  `INSPAMITY_LIVE_LLM_FIXTURE_COUNT` (up to 20) for a more representative run. The local
+  `INSPAMITY_LIVE_LLM_FIXTURE_COUNT` (up to 20) for a more representative spam run. The local
   `config.ini` needs only `settings.provider`, and the selected provider's `api_key` and `model`.
 
 ## Architecture Notes

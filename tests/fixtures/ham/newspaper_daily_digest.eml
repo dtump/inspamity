@@ -1,0 +1,82 @@
+DKIM-Signature: v=1; d=krant-redacted.nl; s=mail; bh=redacted; h=From:To:Subject:Date:Message-ID; b=redacted
+Authentication-Results: mx.redacted.nl; spf=pass smtp.mailfrom=krant-redacted.nl; dkim=pass header.d=krant-redacted.nl; dmarc=pass header.from=krant-redacted.nl
+Received-SPF: pass (redacted.nl: domain of krant-redacted.nl designates 192.0.2.3 as permitted sender) client-ip=192.0.2.3;
+Content-Type: multipart/alternative; boundary="===============ham006=="
+MIME-Version: 1.0
+Subject: De Krant van Morgen: het nieuws van vandaag
+To: Abonnee <ontvanger@redacted.nl>
+From: De Krant Redacted <nieuwsbrief@krant-redacted.nl>
+Date: Tue, 07 Jul 2026 06:00:00 +0200
+Message-ID: <ham006@krant-redacted.nl>
+
+--===============ham006==
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Goedemorgen,
+
+Hier is het nieuws van vandaag, sélectionnés door onze redactie:
+
+Binnenland
+- Tweede Kamer debatteert over nieuwe woningwet
+- Gemeenten krijgen extra budget voor jeugdzorg
+
+Buitenland
+- EU-lidstaten bereiken akkoord over migratiepact
+- Verkiezingen in het Verenigd Koninkrijk van start gegaan
+
+Economie
+- Inflatie in Nederland daalt naar 2,1 procent
+- AEX-index sluit op het hoogste punt in drie weken
+
+Sport
+- Oranje speelt vanavond tegen Polen
+
+Lees verder op onze website.
+
+Fijne dag,
+De redactie van De Krant Redacted
+
+---
+De Krant Redacted B.V. | KvK: 11223344
+Abonnement beheren: https://krant-redacted.nl/mijn-abonnement
+Afmelden: https://krant-redacted.nl/nieuwsbrief/afmelden
+--===============ham006==
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head><title>De Krant van Morgen</title></head>
+<body style=3D"font-family: Georgia, serif;">
+<h2>Het nieuws van vandaag</h2>
+<p>Goedemorgen,</p>
+<p>Hier is het nieuws van vandaag, geselecteerd door onze redactie:</p>
+<h3>Binnenland</h3>
+<ul>
+<li>Tweede Kamer debatteert over nieuwe woningwet</li>
+<li>Gemeenten krijgen extra budget voor jeugdzorg</li>
+</ul>
+<h3>Buitenland</h3>
+<ul>
+<li>EU-lidstaten bereiken akkoord over migratiepact</li>
+<li>Verkiezingen in het Verenigd Koninkrijk van start gegaan</li>
+</ul>
+<h3>Economie</h3>
+<ul>
+<li>Inflatie in Nederland daalt naar 2,1 procent</li>
+<li>AEX-index sluit op het hoogste punt in drie weken</li>
+</ul>
+<h3>Sport</h3>
+<ul>
+<li>Oranje speelt vanavond tegen Polen</li>
+</ul>
+<p><a href=3D"https://krant-redacted.nl/nieuws-van-vandaag">Lees verder</a>=n</p>
+<hr>
+<p style=3D"font-size: 12px; color: #666;">
+De Krant Redacted B.V. | KvK: 11223344<br>
+<a href=3D"https://krant-redacted.nl/mijn-abonnement">Abonnement beheren</a> |
+<a href=3D"https://krant-redacted.nl/nieuwsbrief/afmelden">Afmelden</a>
+</p>
+</body>
+</html>
+--===============ham006==--

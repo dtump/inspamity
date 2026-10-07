@@ -72,6 +72,14 @@ def check_spam_with_mistral(email_content: str) -> dict[str, Any]:
         choice = response.choices[0]
         content = choice.message.content
 
+        if isinstance(content, list):
+            text_parts = []
+            for chunk in content:
+                text = getattr(chunk, "text", None)
+                if isinstance(text, str):
+                    text_parts.append(text)
+            content = "".join(text_parts)
+
         try:
             result = json.loads(content)
         except (json.JSONDecodeError, TypeError) as error:

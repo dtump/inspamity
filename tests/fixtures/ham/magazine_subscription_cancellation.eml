@@ -1,0 +1,68 @@
+DKIM-Signature: v=1; d=tijdschrift-redacted.nl; s=mail; bh=redacted; h=From:To:Subject:Date:Message-ID; b=redacted
+Authentication-Results: mx.redacted.nl; spf=pass smtp.mailfrom=tijdschrift-redacted.nl; dkim=pass header.d=tijdschrift-redacted.nl; dmarc=pass header.from=tijdschrift-redacted.nl
+Received-SPF: pass (redacted.nl: domain of tijdschrift-redacted.nl designates 192.0.2.6 as permitted sender) client-ip=192.0.2.6;
+Content-Type: multipart/alternative; boundary="===============ham009=="
+MIME-Version: 1.0
+Subject: Bevestiging: uw abonnement is opgezegd
+To: Abonnee <ontvanger@redacted.nl>
+From: Tijdschrift Redacted <klantenservice@tijdschrift-redacted.nl>
+Date: Fri, 10 Jul 2026 16:45:00 +0200
+Message-ID: <ham009@tijdschrift-redacted.nl>
+
+--===============ham009==
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Beste lezer,
+
+We hebben uw opzegging ontvangen en verwerkt. Hieronder vindt u de b=
+evestiging.
+
+Abonnement:
+- Tijdschrift: Redacted Magazine
+- Abonnementsnummer: SUB-2024-99887
+- Opzegdatum: 10 juli 2026
+- Einddatum abonnement: 31 december 2026
+
+Uw abonnement loopt door tot en met 31 december 2026. U ontvangt =
+nog =C3=A9=C3=A9n laatste editie in december.
+
+Let op: de automatische incasso stopt per 1 januari 2027.
+
+We hopen u in de toekomst weer als lezer te mogen verwelkomen.
+
+Vragen? Neem contact op via klantenservice@tijdschrift-redacted.nl.
+
+Met vriendelijke groet,
+Klantenservice Tijdschrift Redacted
+
+---
+Tijdschrift Redacted B.V. | KvK: 33445566
+--===============ham009==
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head><title>Opzegging bevestigd</title></head>
+<body style=3D"font-family: Arial, sans-serif;">
+<h2>Uw opzegging is bevestigd</h2>
+<p>Beste lezer,</p>
+<p>We hebben uw opzegging ontvangen en verwerkt.</p>
+<table border=3D"1" cellpadding=3D"8">
+<tr><td>Tijdschrift</td><td>Redacted Magazine</td></tr>
+<tr><td>Abonnementsnummer</td><td>SUB-2024-99887</td></tr>
+<tr><td>Opzegdatum</td><td>10 juli 2026</td></tr>
+<tr><td>Einddatum</td><td>31 december 2026</td></tr>
+</table>
+<p>Uw abonnement loopt door tot en met <strong>31 december 2026</strong>.=
+</p>
+<p>Let op: de automatische incasso stopt per 1 januari 2027.</p>
+<hr>
+<p style=3D"font-size: 12px; color: #666;">
+Tijdschrift Redacted B.V. | KvK: 33445566<br>
+Vragen? <a href=3D"mailto:klantenservice@tijdschrift-redacted.nl">klantens=
+ervice@tijdschrift-redacted.nl</a>
+</p>
+</body>
+</html>
+--===============ham009==--

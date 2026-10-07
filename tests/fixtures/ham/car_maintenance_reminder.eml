@@ -1,0 +1,77 @@
+DKIM-Signature: v=1; d=garage-redacted.nl; s=mail; bh=redacted; h=From:To:Subject:Date:Message-ID; b=redacted
+Authentication-Results: mx.redacted.nl; spf=pass smtp.mailfrom=garage-redacted.nl; dkim=pass header.d=garage-redacted.nl; dmarc=pass header.from=garage-redacted.nl
+Received-SPF: pass (redacted.nl: domain of garage-redacted.nl designates 192.0.2.5 as permitted sender) client-ip=192.0.2.5;
+Content-Type: multipart/alternative; boundary="===============ham008=="
+MIME-Version: 1.0
+Subject: Uw auto is toe aan een beurt - APK en onderhoud
+To: Abonnee <ontvanger@redacted.nl>
+From: Garage Redacted <afspraak@garage-redacted.nl>
+Date: Thu, 09 Jul 2026 09:15:00 +0200
+Message-ID: <ham008@garage-redacted.nl>
+
+--===============ham008==
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Beste klant,
+
+Uit onze administratie blijkt dat uw auto binnenkort toe is aan onde=
+rhoud. Uw APK verloopt over 3 weken.
+
+Voertuiggegevens:
+- Kenteken: XX-123-X (geregistreerd op uw naam)
+- Merk/type: Redacted
+- Kilometerstand bij laatste beurt: 145.000 km
+
+Wij raden aan om voor de APK-voit een kleine beurt te laten uitvoeren=
+:
+- Olie verversen
+- Oliefilter vervangen
+- Remmenvloeistof controleren
+- Banden checken
+
+Geschatte kosten: =E2=82=AC185,- (inclusief APK-keuring)
+
+Maak direct een afspraak via onze website of bel ons op 020-1234567.
+
+Met vriendelijke groet,
+Garage Redacted
+
+---
+Garage Redacted B.V. | KvK: 99887766
+Dit is een servicebericht voor uw voertuig.
+--===============ham008==
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head><title>Onderhoudsherinnering</title></head>
+<body style=3D"font-family: Arial, sans-serif;">
+<h2>Uw auto is toe aan een beurt</h2>
+<p>Beste klant,</p>
+<p>Uit onze administratie blijkt dat uw auto binnenkort toe is aan on=
+derhoud. Uw APK verloopt over <strong>3 weken</strong>.</p>
+<h3>Voertuiggegevens</h3>
+<ul>
+<li>Kenteken: XX-123-X</li>
+<li>Kilometerstand bij laatste beurt: 145.000 km</li>
+</ul>
+<h3>Aanbevolen werkzaamheden</h3>
+<ul>
+<li>Olie verversen</li>
+<li>Oliefilter vervangen</li>
+<li>Remmenvloeistof controleren</li>
+<li>Banden checken</li>
+</ul>
+<p>Geschatte kosten: <strong>=E2=82=AC185,-</strong> (inclusief APK-keurin=
+g)</p>
+<p><a href=3D"https://garage-redacted.nl/afspraak" style=3D"background: #0=
+066cc; color: white; padding: 12px 24px;">Maak een afspraak</a></p>
+<p>Of bel ons: 020-1234567</p>
+<hr>
+<p style=3D"font-size: 12px; color: #666;">
+Garage Redacted B.V. | KvK: 99887766
+</p>
+</body>
+</html>
+--===============ham008==--

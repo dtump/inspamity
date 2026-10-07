@@ -1,0 +1,69 @@
+DKIM-Signature: v=1; d=sportsbook-redacted.nl; s=mail; bh=redacted; h=From:To:Subject:Date:Message-ID; b=redacted
+Authentication-Results: mx.redacted.nl; spf=pass smtp.mailfrom=sportsbook-redacted.nl; dkim=pass header.d=sportsbook-redacted.nl; dmarc=pass header.from=sportsbook-redacted.nl
+Received-SPF: pass (redacted.nl: domain of sportsbook-redacted.nl designates 192.0.2.2 as permitted sender) client-ip=192.0.2.2;
+Content-Type: multipart/alternative; boundary="===============ham004=="
+MIME-Version: 1.0
+Subject: Sportweddenschappen: EK kwalificatie en meer
+To: Abonnee <ontvanger@redacted.nl>
+From: Sportsbook Redacted <nieuwsbrief@sportsbook-redacted.nl>
+Date: Fri, 10 Jul 2026 07:45:00 +0200
+Message-ID: <ham004@sportsbook-redacted.nl>
+
+--===============ham004==
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Goedemorgen,
+
+De EK kwalificatiewedstrijden staan weer voor de deur. Bekijk de aan=
+komende wedstrijden en de bijbehorende quoteringen in onze sportsbook.
+
+Topwedstrijden deze week:
+- Nederland - Polen, zaterdag 20:45
+- Belgi=C3=AB - Frankrijk, zondag 18:00
+- Duitsland - Spanje, maandag 21:00
+
+Verhoogde quoteringen beschikbaar op de knock-out wedstrijden. Gel=
+dig tot 48 uur voor aanvang.
+
+Plaats je weddenschap verantwoord. Wedden is vanaf 18 jaar.
+
+Sportieve groet,
+Sportsbook Redacted
+
+---
+Sportsbook Redacted B.V.
+Kansspelvergunning KSA: 87654321
+KvK: 12345678
+
+Afmelden: https://sportsbook-redacted.nl/nieuwsbrief/afmelden
+--===============ham004==
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head><title>Sportnieuwsbrief</title></head>
+<body style=3D"font-family: Arial, sans-serif;">
+<h2>EK kwalificatie - topwedstrijden</h2>
+<p>Goedemorgen,</p>
+<p>De EK kwalificatiewedstrijden staan weer voor de deur. Bekijk de aa=
+nkomende wedstrijden en de bijbehorende quoteringen in onze sportsbook.=
+</p>
+<h3>Topwedstrijden deze week:</h3>
+<ul>
+<li><strong>Nederland - Polen</strong>, zaterdag 20:45</li>
+<li><strong>Belgi=C3=AB - Frankrijk</strong>, zondag 18:00</li>
+<li><strong>Duitsland - Spanje</strong>, maandag 21:00</li>
+</ul>
+<p><a href=3D"https://sportsbook-redacted.nl/sport/voetbal/ek-kwalificatie=
+">Bekijk alle wedstrijden</a></p>
+<p style=3D"font-size: 11px;">Verhoogde quoteringen beschikbaar. Geldig t=
+ot 48 uur voor aanvang. 18+.</p>
+<hr>
+<p style=3D"font-size: 11px; color: #999;">
+Sportsbook Redacted B.V. | KSA: 87654321 | KvK: 12345678 |
+<a href=3D"https://sportsbook-redacted.nl/afmelden">Afmelden</a>
+</p>
+</body>
+</html>
+--===============ham004==--

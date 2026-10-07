@@ -1,2 +1,3 @@
 # Raw email fixtures legitimately contain quoted-printable whitespace.
 tests/fixtures/spam/*.eml -whitespace
+tests/fixtures/ham/*.eml -whitespace

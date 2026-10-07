@@ -1,0 +1,73 @@
+DKIM-Signature: v=1; d=casino-redacted.nl; s=mail; bh=redacted; h=From:To:Subject:Date:Message-ID; b=redacted
+Authentication-Results: mx.redacted.nl; spf=pass smtp.mailfrom=casino-redacted.nl; dkim=pass header.d=casino-redacted.nl; dmarc=pass header.from=casino-redacted.nl
+Received-SPF: pass (redacted.nl: domain of casino-redacted.nl designates 192.0.2.1 as permitted sender) client-ip=192.0.2.1;
+Content-Type: multipart/alternative; boundary="===============ham001=="
+MIME-Version: 1.0
+Subject: Welkomstbonus: 100 free spins voor jou
+To: Abonnee <ontvanger@redacted.nl>
+From: Casino Redacted <nieuwsbrief@casino-redacted.nl>
+Date: Mon, 06 Jul 2026 09:00:00 +0200
+Message-ID: <ham001@casino-redacted.nl>
+
+--===============ham001==
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Beste speler,
+
+Welkom bij Casino Redacted! Als nieuwe speler ontvang je van ons een w=
+elkomstpakket:
+
+- 100 free spins op Starburst bij je eerste storting
+- 100% bonus tot =E2=82=AC100 op je eerste storting
+- Geen bonuscode nodig, de bonus wordt automatisch geactiveerd
+
+Deze actie is geldig tot en met 31 juli 2026.
+
+Speel verantwoord. Gokken kan verslavend zijn. Hulp nodig? Bel 0900-217=
+ 77 21 (=E2=82=AC0,10/min) of bezoek www.loketkansspel.nl.
+
+Met vriendelijke groet,
+Het team van Casino Redacted
+
+---
+Casino Redacted B.V.
+Kansspelvergunning KSA: 12345678
+KvK: 87654321
+Adres: Redactedstraat 1, 1012 AB Amsterdam
+
+Je ontvangt deze e-mail omdat je je hebt aangemeld voor onze nieuwsbrie=
+f.
+Afmelden: https://casino-redacted.nl/nieuwsbrief/afmelden
+--===============ham001==
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head><title>Welkomstbonus</title></head>
+<body style=3D"font-family: Arial, sans-serif;">
+<h1>Welkom bij Casino Redacted!</h1>
+<p>Beste speler,</p>
+<p>Welkom bij Casino Redacted! Als nieuwe speler ontvang je van ons ee=
+n welkomstpakket:</p>
+<ul>
+<li><strong>100 free spins</strong> op Starburst bij je eerste storting</li>
+<li><strong>100% bonus</strong> tot =E2=82=AC100 op je eerste storting</li>
+<li>Geen bonuscode nodig, de bonus wordt automatisch geactiveerd</li>
+</ul>
+<p><a href=3D"https://casino-redacted.nl/promoties/welkomstbonus" style=3D=
+"background: #ff6600; color: white; padding: 12px 24px; text-decoration: n=
+one;">Claim je bonus</a></p>
+<p>Deze actie is geldig tot en met 31 juli 2026.</p>
+<hr>
+<p style=3D"font-size: 12px; color: #666;">
+Speel verantwoord. Gokken kan verslavend zijn. Hulp nodig? Bel 0900-2177=
+721 (=E2=82=AC0,10/min) of bezoek <a href=3D"https://www.loketkansspel.nl"=
+>www.loketkansspel.nl</a>.<br>
+Casino Redacted B.V. | Kansspelvergunning KSA: 12345678 | KvK: 87654321<br>
+Afmelden: <a href=3D"https://casino-redacted.nl/nieuwsbrief/afmelden">hier</=
+a>
+</p>
+</body>
+</html>
+--===============ham001==--
