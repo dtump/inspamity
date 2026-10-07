@@ -1,0 +1,74 @@
+DKIM-Signature: v=1; d=delivery-redacted.com; s=mail; bh=redacted; h=From:To:Subject:Date:Message-ID; b=redacted
+Authentication-Results: mx.redacted.nl; spf=pass smtp.mailfrom=delivery-redacted.com; dkim=pass header.d=delivery-redacted.com; dmarc=pass header.from=delivery-redacted.com
+Received-SPF: pass (redacted.nl: domain of delivery-redacted.com designates 192.0.2.7 as permitted sender) client-ip=192.0.2.7;
+Content-Type: multipart/alternative; boundary="===============ham010=="
+MIME-Version: 1.0
+Subject: Your order from Redacted Kitchen is on the way
+To: Customer <ontvanger@redacted.nl>
+From: Redacted Delivery <orders@delivery-redacted.com>
+Date: Sat, 11 Jul 2026 19:32:00 +0200
+Message-ID: <ham010@delivery-redacted.com>
+
+--===============ham010==
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi there,
+
+Your order is on the way! Estimated delivery time: 20:05 - 20:20.
+
+Order summary:
+- 1x Margherita Pizza (Large) - =E2=82=AC12.50
+- 1x Caesar Salad - =E2=82=AC7.95
+- 1x Garlic Bread - =E2=82=AC4.50
+- 2x Coca Cola (33cl) - =E2=82=AC5.00
+
+Delivery fee: =E2=82=AC2.50
+Total: =E2=82=AC32.45
+
+Payment: Paid by card ending in 4242
+
+Delivery address:
+Redacted Street 42, Apartment 3B
+1012 AB Amsterdam
+
+Track your order:
+https://delivery-redacted.com/track/ORD-8891234
+
+Enjoy your meal!
+
+Redacted Delivery
+
+---
+Redacted Delivery B.V. | KvK: 77889900
+--===============ham010==
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head><title>Order on the way</title></head>
+<body style=3D"font-family: Arial, sans-serif;">
+<h2>Your order is on the way</h2>
+<p>Hi there,</p>
+<p>Estimated delivery time: <strong>20:05 - 20:20</strong></p>
+<h3>Order summary</h3>
+<table border=3D"1" cellpadding=3D"8">
+<tr><th>Item</th><th>Qty</th><th>Price</th></tr>
+<tr><td>Margherita Pizza (Large)</td><td>1</td><td>=E2=82=AC12.50</td></tr>
+<tr><td>Caesar Salad</td><td>1</td><td>=E2=82=AC7.95</td></tr>
+<tr><td>Garlic Bread</td><td>1</td><td>=E2=82=AC4.50</td></tr>
+<tr><td>Coca Cola (33cl)</td><td>2</td><td>=E2=82=AC5.00</td></tr>
+</table>
+<p>Delivery fee: =E2=82=AC2.50<br>
+<strong>Total: =E2=82=AC32.45</strong></p>
+<p>Payment: Paid by card ending in 4242</p>
+<p><a href=3D"https://delivery-redacted.com/track/ORD-8891234" style=3D"ba=
+ckground: #e21b70; color: white; padding: 12px 24px;">Track your order</a></p=
+>
+<hr>
+<p style=3D"font-size: 12px; color: #666;">
+Redacted Delivery B.V. | KvK: 77889900
+</p>
+</body>
+</html>
+--===============ham010==--

@@ -1,0 +1,73 @@
+DKIM-Signature: v=1; d=webshop-redacted.com; s=mail; bh=redacted; h=From:To:Subject:Date:Message-ID; b=redacted
+Authentication-Results: mx.redacted.nl; spf=pass smtp.mailfrom=webshop-redacted.com; dkim=pass header.d=webshop-redacted.com; dmarc=pass header.from=webshop-redacted.com
+Received-SPF: pass (redacted.nl: domain of webshop-redacted.com designates 192.0.2.4 as permitted sender) client-ip=192.0.2.4;
+Content-Type: multipart/alternative; boundary="===============ham007=="
+MIME-Version: 1.0
+Subject: Your order #ORD-2026-0715-8842 has been shipped
+To: Customer <ontvanger@redacted.nl>
+From: Webshop Redacted <orders@webshop-redacted.com>
+Date: Wed, 08 Jul 2026 14:22:00 +0200
+Message-ID: <ham007@webshop-redacted.com>
+
+--===============ham007==
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi,
+
+Good news! Your order has been shipped and is on its way.
+
+Order details:
+Order number: ORD-2026-0715-8842
+Order date: 7 July 2026
+
+Items:
+- Wireless Bluetooth Headphones (Black) x 1 - =E2=82=AC49.99
+- USB-C Charging Cable (2m) x 2 - =E2=82=AC19.98
+
+Shipping address:
+Redacted Street 42
+1012 AB Amsterdam
+Netherlands
+
+Track your package:
+https://webshop-redacted.com/track/ORD-2026-0715-8842
+
+Expected delivery: Friday, 10 July 2026
+
+Thanks for shopping with us!
+
+Webshop Redacted Customer Service
+
+---
+Webshop Redacted B.V. | KvK: 55667788
+This is a transactional email about your order.
+--===============ham007==
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head><title>Order shipped</title></head>
+<body style=3D"font-family: Arial, sans-serif;">
+<h2>Your order has been shipped</h2>
+<p>Hi,</p>
+<p>Good news! Your order is on its way.</p>
+<table border=3D"1" cellpadding=3D"8">
+<tr><th>Item</th><th>Qty</th><th>Price</th></tr>
+<tr><td>Wireless Bluetooth Headphones (Black)</td><td>1</td><td>=E2=82=AC49=
+.99</td></tr>
+<tr><td>USB-C Charging Cable (2m)</td><td>2</td><td>=E2=82=AC19.98</td><=
+/tr>
+</table>
+<p><strong>Order number:</strong> ORD-2026-0715-8842<br>
+<strong>Expected delivery:</strong> Friday, 10 July 2026</p>
+<p><a href=3D"https://webshop-redacted.com/track/ORD-2026-0715-8842" style=
+=3D"background: #ff9900; color: white; padding: 12px 24px;">Track your packag=
+e</a></p>
+<hr>
+<p style=3D"font-size: 12px; color: #666;">
+Webshop Redacted B.V. | KvK: 55667788
+</p>
+</body>
+</html>
+--===============ham007==--

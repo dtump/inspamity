@@ -190,12 +190,14 @@ AI response range of 0 through 100. Adjust it in
 5. The plugin emits a zero-score spam or ham verdict symbol for local policy
 6. Detailed logging provides insights into the decision-making process
 
-## 🧪 Testing and spam corpus
+## 🧪 Testing and spam/ham corpora
 
 The regular test suite includes an anonymised, reviewed corpus of 20 distinct
-spam campaigns in `tests/fixtures/spam/`. It exercises email parsing and
-formatting without calling an LLM, and verifies that recipient and mail-server
-identifiers are not present in the committed fixtures:
+spam campaigns in `tests/fixtures/spam/` and 10 legitimate messages in
+`tests/fixtures/ham/` (casino newsletters, newspaper digest, webshop order,
+garage reminder, magazine cancellation, food delivery). It exercises email
+parsing and formatting without calling an LLM, and verifies that recipient and
+mail-server identifiers are not present in the committed fixtures:
 
 ```bash
 .venv/bin/pytest -v
@@ -220,22 +222,21 @@ Replace `openai` and `[openai]` with `anthropic`, `[anthropic]`, or `mistral`,
 project's `config.ini` is ignored by Git, and `/etc/inspamity/config.ini`, when
 present, takes precedence over it.
 
-Run five fixtures by default:
+Run the spam and ham benchmarks:
 
 ```bash
-INSPAMITY_RUN_LIVE_LLM=1 .venv/bin/pytest -m live_llm -v --durations=1 --log-cli-level=INFO
-```
-
-`--durations=1` only reports the single slowest test; it does not control the
-number of API calls. `--log-cli-level=INFO` displays one line per LLM response
-with its spam classification, confidence, reason, and duration. The default
-benchmark makes five API calls. For a more representative run, increase the
-number of corpus fixtures (up to 20), for example:
-
-```bash
+# Spam corpus (expects all fixtures classified as spam)
 INSPAMITY_RUN_LIVE_LLM=1 INSPAMITY_LIVE_LLM_FIXTURE_COUNT=20 \
-  .venv/bin/pytest -m live_llm -v --durations=20 --log-cli-level=INFO
+  .venv/bin/pytest tests/test_spam_corpus_live.py -m live_llm -v --log-cli-level=INFO
+
+# Ham corpus (expects all fixtures classified as not spam)
+INSPAMITY_RUN_LIVE_LLM=1 .venv/bin/pytest tests/test_ham_corpus_live.py -m live_llm -v --log-cli-level=INFO
 ```
+
+`--log-cli-level=INFO` displays one line per LLM response with its classification,
+confidence, reason, and duration. The spam benchmark runs up to 20 fixtures
+(configurable with `INSPAMITY_LIVE_LLM_FIXTURE_COUNT`); the ham benchmark runs all
+10 fixtures.
 
 If Mistral returns malformed or truncated JSON, the logged error includes its finish reason and a
 bounded preview of the raw model response to make the failure diagnosable.

@@ -1,0 +1,68 @@
+DKIM-Signature: v=1; d=casino-redacted.nl; s=mail; bh=redacted; h=From:To:Subject:Date:Message-ID; b=redacted
+Authentication-Results: mx.redacted.nl; spf=pass smtp.mailfrom=casino-redacted.nl; dkim=pass header.d=casino-redacted.nl; dmarc=pass header.from=casino-redacted.nl
+Received-SPF: pass (redacted.nl: domain of casino-redacted.nl designates 192.0.2.1 as permitted sender) client-ip=192.0.2.1;
+Content-Type: multipart/alternative; boundary="===============ham005=="
+MIME-Version: 1.0
+Subject: Nieuw in ons casino: 5 gloednieuwe gokkasten
+To: Abonnee <ontvanger@redacted.nl>
+From: Casino Redacted <nieuwsbrief@casino-redacted.nl>
+Date: Sat, 11 Jul 2026 11:00:00 +0200
+Message-ID: <ham005@casino-redacted.nl>
+
+--===============ham005==
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hoi,
+
+We hebben 5 gloednieuwe gokkasten toegevoegd aan ons aanbod! Probeer =
+ze nu met 20 gratis spins:
+
+- Golden Pharaoh (RTP: 96,5%)
+- Fruit Blast Deluxe (RTP: 96,2%)
+- Wild West Bonanza (RTP: 96,8%)
+- Ocean Riches (RTP: 95,9%)
+- Mega Diamond (RTP: 96,1%)
+
+Alle spellen zijn gecertificeerd door een Onafhankelijke Test Instell=
+ing (OTI) en voldoen aan de KSA-eisen voor eerlijke kansspelen.
+
+Veel speelplezier!
+
+Het Casino Redacted team
+
+---
+Casino Redacted B.V. | KSA vergunning: 12345678 | KvK: 87654321
+Speel verantwoord: www.loketkansspel.nl
+Afmelden: https://casino-redacted.nl/nieuwsbrief/afmelden
+--===============ham005==
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head><title>Nieuw: 5 gokkasten</title></head>
+<body style=3D"font-family: Arial, sans-serif;">
+<h2>5 gloednieuwe gokkasten!</h2>
+<p>Hoi,</p>
+<p>We hebben 5 gloednieuwe gokkasten toegevoegd aan ons aanbod! Probee=
+r ze nu met <strong>20 gratis spins</strong>:</p>
+<table border=3D"1" cellpadding=3D"8">
+<tr><th>Spel</th><th>RTP</th></tr>
+<tr><td>Golden Pharaoh</td><td>96,5%</td></tr>
+<tr><td>Fruit Blast Deluxe</td><td>96,2%</td></tr>
+<tr><td>Wild West Bonanza</td><td>96,8%</td></tr>
+<tr><td>Ocean Riches</td><td>95,9%</td></tr>
+<tr><td>Mega Diamond</td><td>96,1%</td></tr>
+</table>
+<p><a href=3D"https://casino-redacted.nl/spellen/nieuw" style=3D"background=
+: #0066cc; color: white; padding: 12px 24px;">Speel nu</a></p>
+<p style=3D"font-size: 11px;">Alle spellen zijn gecertificeerd door een O=
+nafhankelijke Test Instelling (OTI).</p>
+<hr>
+<p style=3D"font-size: 11px; color: #999;">
+Casino Redacted B.V. | KSA: 12345678 | KvK: 87654321 |
+<a href=3D"https://casino-redacted.nl/afmelden">Afmelden</a>
+</p>
+</body>
+</html>
+--===============ham005==--
